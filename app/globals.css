@@ -57,6 +57,27 @@
   --radius-statcard-md: 32px; /* Stat card border radius - medium size */
   --radius-statcard-lg: 32px; /* Stat card border radius - large size */
 
+  /* Table Styles */
+  --table-bg: var(--color-background);
+  --table-fg: var(--color-foreground);
+  --table-muted: var(--color-muted-foreground);
+  --table-border: var(--color-border);
+  --table-row-hover: #f8f9fb;
+  --table-header-bg: #fafbfc;
+  --table-positive: #1a7f37; /* green */
+  --table-negative: #b00020; /* red */
+  --table-badge-bg: #f0f5ff;
+  --table-badge-fg: #2843a6;
+  --table-radius: 10px;
+  --table-spacing: 16px;
+
+  /* Avatar Styles */
+  --avatar-size-xs: 1.5rem;
+  --avatar-size-sm: 2rem;
+  --avatar-size-md: 2.5rem;
+  --avatar-size-lg: 3rem;
+  --avatar-size-xl: 4rem;
+
   /* Button Typography */
   --btn-font-weight: 500; /* Button font weight - consistent across all variants */
 
@@ -124,7 +145,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root {
+  :root {
   --radius: 0.625rem;
   
   /* Typography - Make fonts available globally */
@@ -163,7 +184,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-}
+  }
 
 .dark {
   --background: oklch(0.145 0 0);
@@ -203,8 +224,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
-  body {
+
+body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-size: var(--font-size-base);
@@ -284,6 +305,131 @@
     border: 1px solid var(--color-border);
   }
   
+  /* Table Styles - Centralized in globals.css */
+  [data-slot="table-container"] {
+    background: var(--table-bg);
+    color: var(--table-fg);
+    border-radius: var(--table-radius);
+    overflow: hidden;
+  }
+
+  [data-slot="table"] {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Table Header */
+  [data-slot="table-header"] th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--table-muted);
+    background: #ffffff;
+    padding: var(--table-spacing);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  /* Table Body */
+  [data-slot="table-body"] th,
+  [data-slot="table-body"] td {
+    padding: var(--table-spacing);
+    vertical-align: middle;
+    background: #ffffff;
+  }
+
+  /* Row hover */
+  [data-slot="table-body"] tr:hover td,
+  [data-slot="table-body"] tr:hover th[scope="row"] {
+    background: var(--table-row-hover);
+  }
+
+  /* Table Caption - Visually hidden but accessible */
+  [data-slot="table-caption"] {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Avatar Styles - Centralized in globals.css */
+  /* Nice Avatar container - fills parent avatar container */
+  [data-slot="avatar"][data-nice-avatar-wrapper] .avatar-nice-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-slot="avatar"][data-nice-avatar-wrapper] .avatar-nice-container > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Avatar Fallback - Background color via hash-based classes */
+  /* Generate 50 color variations for consistent avatar backgrounds */
+  [data-slot="avatar-fallback"][data-seed] {
+    color: white;
+  }
+
+  /* Generate hash-based color classes (0-49 for 50 color variations) */
+  .avatar-fallback-0 { background-color: hsl(0, 70%, 55%); }
+  .avatar-fallback-1 { background-color: hsl(7, 70%, 55%); }
+  .avatar-fallback-2 { background-color: hsl(14, 70%, 55%); }
+  .avatar-fallback-3 { background-color: hsl(21, 70%, 55%); }
+  .avatar-fallback-4 { background-color: hsl(28, 70%, 55%); }
+  .avatar-fallback-5 { background-color: hsl(35, 70%, 55%); }
+  .avatar-fallback-6 { background-color: hsl(42, 70%, 55%); }
+  .avatar-fallback-7 { background-color: hsl(49, 70%, 55%); }
+  .avatar-fallback-8 { background-color: hsl(56, 70%, 55%); }
+  .avatar-fallback-9 { background-color: hsl(63, 70%, 55%); }
+  .avatar-fallback-10 { background-color: hsl(70, 70%, 55%); }
+  .avatar-fallback-11 { background-color: hsl(77, 70%, 55%); }
+  .avatar-fallback-12 { background-color: hsl(84, 70%, 55%); }
+  .avatar-fallback-13 { background-color: hsl(91, 70%, 55%); }
+  .avatar-fallback-14 { background-color: hsl(98, 70%, 55%); }
+  .avatar-fallback-15 { background-color: hsl(105, 70%, 55%); }
+  .avatar-fallback-16 { background-color: hsl(112, 70%, 55%); }
+  .avatar-fallback-17 { background-color: hsl(119, 70%, 55%); }
+  .avatar-fallback-18 { background-color: hsl(126, 70%, 55%); }
+  .avatar-fallback-19 { background-color: hsl(133, 70%, 55%); }
+  .avatar-fallback-20 { background-color: hsl(140, 70%, 55%); }
+  .avatar-fallback-21 { background-color: hsl(147, 70%, 55%); }
+  .avatar-fallback-22 { background-color: hsl(154, 70%, 55%); }
+  .avatar-fallback-23 { background-color: hsl(161, 70%, 55%); }
+  .avatar-fallback-24 { background-color: hsl(168, 70%, 55%); }
+  .avatar-fallback-25 { background-color: hsl(175, 70%, 55%); }
+  .avatar-fallback-26 { background-color: hsl(182, 70%, 55%); }
+  .avatar-fallback-27 { background-color: hsl(189, 70%, 55%); }
+  .avatar-fallback-28 { background-color: hsl(196, 70%, 55%); }
+  .avatar-fallback-29 { background-color: hsl(203, 70%, 55%); }
+  .avatar-fallback-30 { background-color: hsl(210, 70%, 55%); }
+  .avatar-fallback-31 { background-color: hsl(217, 70%, 55%); }
+  .avatar-fallback-32 { background-color: hsl(224, 70%, 55%); }
+  .avatar-fallback-33 { background-color: hsl(231, 70%, 55%); }
+  .avatar-fallback-34 { background-color: hsl(238, 70%, 55%); }
+  .avatar-fallback-35 { background-color: hsl(245, 70%, 55%); }
+  .avatar-fallback-36 { background-color: hsl(252, 70%, 55%); }
+  .avatar-fallback-37 { background-color: hsl(259, 70%, 55%); }
+  .avatar-fallback-38 { background-color: hsl(266, 70%, 55%); }
+  .avatar-fallback-39 { background-color: hsl(273, 70%, 55%); }
+  .avatar-fallback-40 { background-color: hsl(280, 70%, 55%); }
+  .avatar-fallback-41 { background-color: hsl(287, 70%, 55%); }
+  .avatar-fallback-42 { background-color: hsl(294, 70%, 55%); }
+  .avatar-fallback-43 { background-color: hsl(301, 70%, 55%); }
+  .avatar-fallback-44 { background-color: hsl(308, 70%, 55%); }
+  .avatar-fallback-45 { background-color: hsl(315, 70%, 55%); }
+  .avatar-fallback-46 { background-color: hsl(322, 70%, 55%); }
+  .avatar-fallback-47 { background-color: hsl(329, 70%, 55%); }
+  .avatar-fallback-48 { background-color: hsl(336, 70%, 55%); }
+  .avatar-fallback-49 { background-color: hsl(343, 70%, 55%); }
+
   /* Stat Card Styles - Centralized in globals.css */
   [data-statcard-size="sm"] {
     border-radius: var(--radius-statcard-sm);
@@ -319,6 +465,83 @@
   .text-display-lg {
     font-size: 32px;
     line-height: 1.2;
+  }
+  
+  /* Table utility classes */
+  .table-change-positive {
+    color: var(--table-positive);
+  }
+  
+  .table-change-negative {
+    color: var(--table-negative);
+  }
+  
+  .table-badge {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--table-badge-bg);
+    color: var(--table-badge-fg);
+    border: 1px solid #dbe6ff;
+  }
+  
+  .table-action-btn {
+    appearance: none;
+    border: 1px solid var(--table-border);
+    background: #f5f7ff;
+    color: var(--color-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.02s ease-in-out;
+  }
+  
+  .table-action-btn:hover {
+    background: #ecf0ff;
+    border-color: #cfd7ff;
+  }
+  
+  .table-action-btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Column width utilities */
+  .table-col-name { width: 28%; }
+  .table-col-price { width: 18%; }
+  .table-col-change { width: 14%; }
+  .table-col-mcap { width: 22%; }
+  .table-col-action { width: 18%; text-align: right; }
+  
+  /* Asset layout utilities */
+  .table-asset-name {
+    font-weight: 600;
+    color: var(--table-fg);
+  }
+  
+  .table-asset-ticker {
+    color: var(--table-muted);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  
+  .table-asset-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Price and market cap - no wrap */
+  .table-price,
+  .table-mcap {
+    white-space: nowrap;
+  }
+  
+  /* Change column - tabular numbers */
+  .table-change {
+    font-variant-numeric: tabular-nums;
   }
   
   /* Apply Space Mono to number inputs */

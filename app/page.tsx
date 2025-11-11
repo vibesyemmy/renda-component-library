@@ -194,7 +194,7 @@ export default function Home() {
             Renda Component Library • Next.js 16 • React 19 • Tailwind CSS v4 • shadcn/ui
           </p>
         </footer>
-      </div>
+        </div>
     </div>
   )
 }
