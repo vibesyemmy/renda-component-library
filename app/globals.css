@@ -1,26 +1,334 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark *));
+
+/* Google Fonts - Load fonts before they're used */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@400;600;700&display=swap');
+
+@theme {
+  /* Color Palette - Renda Brand*/
+  --color-primary: #0052ff; /* Renda Blue */
+  --color-primary-foreground: #ffffff;
+
+  --color-accent: #4285f4; /* Renda Accent Blue */
+  --color-accent-foreground: #ffffff;
+
+  --color-background: #f9fafb;
+  --color-foreground: #1e1e1e;
+
+  --color-muted: #6b7280;
+  --color-muted-foreground: #6b7280;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #1e1e1e;
+
+  --color-border: #e5e7eb;
+  --color-input: #e5e7eb;
+  --color-ring: #0052ff; /* Renda Blue */
+
+  /* Status Colors */
+  --color-success: #16a34a;
+  --color-success-foreground: #ffffff;
+
+  --color-warning: #f59e0b;
+  --color-warning-foreground: #ffffff;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Spacing Scale */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem;  /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem;    /* 16px */
+  --spacing-6: 1.5rem;  /* 24px */
+  --spacing-8: 2rem;    /* 32px */
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-xxl: 400px;
+  --radius-input: 12px; /* Input border radius - Coinbase style */
+  --radius-button: var(--radius-xxl); /* Button border radius - fully rounded*/
+  --radius-statcard-sm: 24px; /* Stat card border radius - small size */
+  --radius-statcard-md: 32px; /* Stat card border radius - medium size */
+  --radius-statcard-lg: 32px; /* Stat card border radius - large size */
+
+  /* Button Typography */
+  --btn-font-weight: 500; /* Button font weight - consistent across all variants */
+
+  /* Typography - Centralized font definitions */
+  /* Sora for text, Space Mono for numbers */
+  --font-sans: 'Sora', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', Courier, monospace;
+
+  /* Font Sizes */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.25rem;   /* 20px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-2xl: 2rem;     /* 32px */
+
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Height */
+  --line-height-base: 1.25;
 }
 
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  
+  /* Typography - Make fonts available globally */
+  --font-sans: 'Sora', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', Courier, monospace;
+  
+  /* Renda Brand Colors */
+  --background: #f9fafb;
+  --foreground: #1e1e1e;
+  --card: #ffffff;
+  --card-foreground: #1e1e1e;
+  --popover: #ffffff;
+  --popover-foreground: #1e1e1e;
+  --primary: #0052ff; /* Renda Blue */
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #1e1e1e;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #4285f4; /* Renda Accent Blue */
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #0052ff; /* Renda Blue */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+  
+  /* Input Styles - Centralized in globals.css (Coinbase-inspired) */
+  input[data-slot="input"],
+  [data-slot="input"] {
+    border-radius: var(--radius-input);
+    padding: 12px 14px; /* Coinbase-style comfortable padding */
+    font-size: 16px;
+    line-height: 24px;
+    border: 1.5px solid var(--color-input); /* Retain existing border color */
+    background: var(--color-background);
+    color: var(--color-foreground);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  input[data-slot="input"]::placeholder,
+  [data-slot="input"]::placeholder {
+    color: var(--color-muted-foreground);
+  }
+
+  /* Focus state: Coinbase-style focus ring */
+  input[data-slot="input"]:focus-visible,
+  [data-slot="input"]:focus-visible {
+    border-color: var(--color-ring); /* Retain existing ring color */
+    box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2); /* Primary blue with opacity */
+    outline: none;
+  }
+
+  /* Error state */
+  input[data-slot="input"][aria-invalid="true"],
+  [data-slot="input"][aria-invalid="true"] {
+    border-color: var(--color-destructive); /* Retain existing destructive color */
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); /* Destructive red with opacity */
+  }
+  
+  /* Button Styles - Centralized in globals.css (Coinbase-inspired) */
+  button[data-slot="button"],
+  [data-slot="button"] {
+    border-radius: var(--radius-button);
+    appearance: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: var(--btn-font-weight); /* Consistent 600 weight for all variants */
+    transition:
+      background-color 140ms ease,
+      color 140ms ease,
+      box-shadow 140ms ease,
+      transform 40ms ease,
+      border-color 140ms ease;
+  }
+
+  /* Default: no border unless specified */
+  button[data-slot="button"]:not(.border),
+  [data-slot="button"]:not(.border) {
+    border: none;
+  }
+
+  button[data-slot="button"]:active,
+  [data-slot="button"]:active {
+    transform: translateY(0.5px);
+  }
+
+  /* Focus-visible ring for accessibility (Coinbase style) */
+  button[data-slot="button"]:focus-visible,
+  [data-slot="button"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2);
+  }
+
+  /* Secondary button border styling */
+  button[data-slot="button"].border,
+  [data-slot="button"].border {
+    border: 1px solid var(--color-border);
+  }
+  
+  /* Stat Card Styles - Centralized in globals.css */
+  [data-statcard-size="sm"] {
+    border-radius: var(--radius-statcard-sm);
+  }
+
+  [data-statcard-size="md"] {
+    border-radius: var(--radius-statcard-md);
+  }
+
+  [data-statcard-size="lg"] {
+    border-radius: var(--radius-statcard-lg);
+  }
+  
+  /* Focus Styles for Accessibility (general) */
+  *:focus-visible:not([data-slot="button"]) {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Custom font utilities */
+  .font-number {
+    font-family: var(--font-mono) !important;
+  }
+  
+  /* Override default font-mono to use Space Mono */
+  .font-mono {
+    font-family: var(--font-mono) !important;
+  }
+  
+  /* Display font sizes for large headings */
+  .text-display-lg {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  /* Apply Space Mono to number inputs */
+  input[type="number"],
+  input[type="number"]::placeholder {
+    font-family: var(--font-mono) !important;
+  }
+
+  /* Apply Space Mono to elements with data-number attribute */
+  [data-number] {
+    font-family: var(--font-mono) !important;
+  }
 }
