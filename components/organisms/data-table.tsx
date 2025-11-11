@@ -8,9 +8,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableCaption,
 } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
 import { Icon } from "@/components/ui/icon"
 import { cn } from "@/lib/utils"
 
@@ -19,6 +19,7 @@ export interface Column<T> {
   label: string
   render?: (item: T) => React.ReactNode
   sortable?: boolean
+  align?: "left" | "right" | "center"
 }
 
 interface DataTableProps<T> {
@@ -28,6 +29,7 @@ interface DataTableProps<T> {
   onRowClick?: (item: T) => void
   emptyState?: React.ReactNode
   className?: string
+  caption?: string
 }
 
 export function DataTable<T extends { id: string | number }>({
@@ -37,6 +39,7 @@ export function DataTable<T extends { id: string | number }>({
   onRowClick,
   emptyState,
   className,
+  caption,
 }: DataTableProps<T>) {
   const [selectedRows, setSelectedRows] = React.useState<Set<string | number>>(
     new Set()
@@ -99,8 +102,9 @@ export function DataTable<T extends { id: string | number }>({
   }
 
   return (
-    <div className={cn("rounded-md border", className)}>
+    <div className={cn("", className)}>
       <Table>
+        {caption && <TableCaption>{caption}</TableCaption>}
         <TableHeader>
           <TableRow>
             {selectable && (
@@ -114,13 +118,16 @@ export function DataTable<T extends { id: string | number }>({
               </TableHead>
             )}
             {columns.map((column) => (
-              <TableHead key={column.key}>
+              <TableHead key={column.key} className={column.align === "right" ? "text-right" : column.align === "center" ? "text-center" : "text-left"}>
                 {column.sortable ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  <button
+                    type="button"
                     onClick={() => handleSort(column.key)}
-                    className="-ml-3 h-8"
+                    className={cn(
+                      "flex items-center gap-2 hover:opacity-80 transition-opacity",
+                      column.align === "right" && "ml-auto",
+                      column.align === "center" && "mx-auto"
+                    )}
                   >
                     {column.label}
                     {sortConfig?.key === column.key && (
@@ -131,10 +138,9 @@ export function DataTable<T extends { id: string | number }>({
                             : "ChevronDown"
                         }
                         size={14}
-                        className="ml-2"
                       />
                     )}
-                  </Button>
+                  </button>
                 ) : (
                   column.label
                 )}
@@ -160,7 +166,7 @@ export function DataTable<T extends { id: string | number }>({
                 </TableCell>
               )}
               {columns.map((column) => (
-                <TableCell key={column.key}>
+                <TableCell key={column.key} className={column.align === "right" ? "text-right" : column.align === "center" ? "text-center" : "text-left"}>
                   {column.render
                     ? column.render(item)
                     : String((item as any)[column.key])}
