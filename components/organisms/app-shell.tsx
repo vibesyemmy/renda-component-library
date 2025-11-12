@@ -4,6 +4,7 @@ import * as React from "react"
 import { Icon, type IconName } from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
 import { Avatar } from "@/components/ui/avatar"
+import { SectionHeader, type SectionHeaderAction } from "@/components/organisms/section-header"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -24,6 +25,13 @@ interface AppShellProps {
     avatar?: string
   }
   onMenuToggle?: () => void
+  headerTitle?: string
+  headerActions?: SectionHeaderAction[]
+  showSearch?: boolean
+  searchValue?: string
+  onSearchChange?: (value: string) => void
+  onSearchClear?: () => void
+  searchPlaceholder?: string
 }
 
 export const AppShell = ({
@@ -32,6 +40,13 @@ export const AppShell = ({
   logo,
   user,
   onMenuToggle,
+  headerTitle = "Dashboard",
+  headerActions,
+  showSearch = true,
+  searchValue,
+  onSearchChange,
+  onSearchClear,
+  searchPlaceholder = "Search...",
 }: AppShellProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
 
@@ -128,18 +143,35 @@ export const AppShell = ({
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="h-16 border-b bg-card flex items-center px-4 lg:px-6">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden mr-2"
-            onClick={toggleSidebar}
-          >
-            <Icon name="Menu" size={24} />
-          </Button>
-          <div className="flex-1" />
-          {/* Add additional header content here */}
-        </header>
+        <div className="lg:hidden">
+          <header className="h-16 border-b bg-card flex items-center px-4">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={toggleSidebar}
+              aria-label="Toggle menu"
+            >
+              <Icon name="Menu" size={20} />
+            </Button>
+            <div className="flex-1" />
+          </header>
+        </div>
+        
+        {/* Section Header - Desktop */}
+        <div className="hidden lg:block">
+          <SectionHeader
+            title={headerTitle}
+            showSearch={showSearch}
+            searchValue={searchValue}
+            onSearchChange={onSearchChange}
+            onSearchClear={onSearchClear}
+            searchPlaceholder={searchPlaceholder}
+            actions={headerActions}
+            avatarSeed={user?.name}
+            avatarImage={user?.avatar}
+            avatarAlt={user?.name}
+          />
+        </div>
 
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>

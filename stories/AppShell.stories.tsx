@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { AppShell } from "@/components/organisms/app-shell"
 import { StatCard } from "@/components/molecules/stat-card"
+import { useState } from "react"
 
 const meta = {
   title: "Organisms/AppShell",
@@ -41,61 +42,87 @@ export const Default: Story = {
 }
 
 export const WithDashboard: Story = {
-  args: {
-    navigation,
-    user,
-    children: (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold mb-2">Dashboard</h1>
-          <p className="text-muted-foreground">Overview of your business</p>
-        </div>
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
 
-        <div className="flex flex-wrap gap-4">
-          <StatCard
-            symbol="Revenue"
-            price="₦2,450,000"
-            percent={12.5}
-            subtitle="from last month"
-            icon="TrendingUp"
-            variant="gain"
-            size="md"
-          />
-          <StatCard
-            symbol="Outstanding"
-            price="₦350,000"
-            percent={-5.2}
-            subtitle="from last month"
-            icon="TrendingDown"
-            variant="loss"
-            size="md"
-          />
-          <StatCard
-            symbol="Paid"
-            price="42"
-            percent={8.1}
-            subtitle="invoices"
-            icon="CheckCircle2"
-            variant="gain"
-            size="md"
-          />
-          <StatCard
-            symbol="Overdue"
-            price="5"
-            percent={0}
-            subtitle="invoices"
-            icon="AlertCircle"
-            variant="neutral"
-            size="md"
-          />
-        </div>
+    return (
+      <AppShell
+        navigation={navigation}
+        user={user}
+        headerTitle="Dashboard"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+        headerActions={[
+          {
+            icon: "RefreshCw",
+            label: "Refresh",
+            onClick: () => alert("Refresh clicked"),
+          },
+          {
+            icon: "Bell",
+            label: "Notifications",
+            onClick: () => alert("Notifications clicked"),
+          },
+        ]}
+      >
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-2xl font-bold mb-2">Dashboard</h1>
+            <p className="text-muted-foreground">Overview of your business</p>
+          </div>
 
-        <div className="border rounded-lg p-6">
-          <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
-          <p className="text-muted-foreground">Activity feed would appear here</p>
+          <div className="flex flex-wrap gap-4">
+            <StatCard
+              symbol="Revenue"
+              price="₦2,450,000"
+              percent={12.5}
+              subtitle="from last month"
+              icon="TrendingUp"
+              variant="gain"
+              size="md"
+            />
+            <StatCard
+              symbol="Outstanding"
+              price="₦350,000"
+              percent={-5.2}
+              subtitle="from last month"
+              icon="TrendingDown"
+              variant="loss"
+              size="md"
+            />
+            <StatCard
+              symbol="Paid"
+              price="42"
+              percent={8.1}
+              subtitle="invoices"
+              icon="CheckCircle2"
+              variant="gain"
+              size="md"
+            />
+            <StatCard
+              symbol="Overdue"
+              price="5"
+              percent={0}
+              subtitle="invoices"
+              icon="AlertCircle"
+              variant="neutral"
+              size="md"
+            />
+          </div>
+
+          <div className="border rounded-lg p-6">
+            <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
+            <p className="text-muted-foreground">Activity feed would appear here</p>
+            {searchValue && (
+              <p className="text-sm text-muted-foreground mt-2">
+                Search: {searchValue}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-    ),
+      </AppShell>
+    )
   },
 }
 
