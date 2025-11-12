@@ -32,9 +32,11 @@ export { SearchInput } from "./molecules/search-input"
 export { AppShell } from "./organisms/app-shell"
 export { DataTable } from "./organisms/data-table"
 export { Pagination } from "./organisms/pagination"
+export { SectionHeader } from "./organisms/section-header"
 
 // Types
 export type { IconName } from "./ui/icon"
 export type { Column } from "./organisms/data-table"
 export type { Toast, ToastType } from "../lib/toast-store"
+export type { SectionHeaderProps, SectionHeaderAction } from "./organisms/section-header"
 

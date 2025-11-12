@@ -117,18 +117,6 @@ Testing, documentation, and finalization.
 
 ## Design Tokens Reference
 
-### Colors
-```css
---color-primary: #009c5f (Emerald Green)
---color-accent: #ffc107 (Warm Gold)
---color-background: #f9fafb (Off White)
---color-foreground: #1e1e1e (Charcoal)
---color-muted: #6b7280 (Cool Gray)
---color-success: #16a34a
---color-warning: #f59e0b
---color-destructive: #ef4444
-```
-
 ### Spacing Scale
 ```css
 4px, 8px, 12px, 16px, 24px, 32px
@@ -194,4 +182,3 @@ renda-component_library/
 - Document all props and variants in Storybook
 - Use Feather icons exclusively (per user preference)
 - Future: Figma tokens can be added later by exporting from tailwind.config
-

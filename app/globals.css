@@ -91,6 +91,7 @@
   --font-size-base: 1rem;    /* 16px */
   --font-size-lg: 1.25rem;   /* 20px */
   --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-1_75xl: 1.75rem; /* 28px */
   --font-size-2xl: 2rem;     /* 32px */
 
   /* Font Weights */
@@ -370,6 +371,82 @@ body {
   [data-slot="avatar"][data-nice-avatar-wrapper] .avatar-nice-container > * {
     width: 100%;
     height: 100%;
+  }
+
+  /* Section Header Styles - Centralized in globals.css */
+  [data-slot="section-header"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 75px;
+    padding: 12px 32px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-foreground);
+  }
+
+  [data-slot="section-header"] .section-header__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0; /* allow title to truncate */
+  }
+
+  [data-slot="section-header"] .section-header__title {
+    font-size: var(--font-size-1_75xl); /* 1.75rem / 28px */
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  [data-slot="section-header"] .section-header__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Section Header Search */
+  [data-slot="section-header"] .section-header__search {
+    min-width: 200px;
+    max-width: 300px;
+  }
+
+  [data-slot="section-header"] .section-header__search-input {
+    height: 36px;
+  }
+
+  /* Section Header Action Buttons */
+  [data-slot="section-header"] .section-header__action-btn {
+    width: 36px;
+    height: 36px;
+    /* Border radius inherited from button component (fully rounded) */
+  }
+
+  /* Section Header Back Button */
+  [data-slot="section-header"] .section-header__back-btn {
+    width: 36px;
+    height: 36px;
+    background: #f7f8fb;
+    border: 1px solid var(--color-border);
+    /* Border radius inherited from button component (fully rounded) */
+  }
+
+  /* Section Header Avatar Button */
+  [data-slot="section-header"] .section-header__avatar-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: #f5f7ff;
+    padding: 0;
+  }
+
+  [data-slot="section-header"] .section-header__avatar-btn:hover {
+    background: #ecf0ff;
   }
 
   /* Avatar Fallback - Background color via hash-based classes */
