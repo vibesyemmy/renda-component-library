@@ -251,6 +251,82 @@ body {
     color: var(--color-muted-foreground);
   }
 
+  /* Search Input Styles - Match Figma design */
+  .search-input-wrapper {
+    width: 100%;
+  }
+
+  /* Search input specific styles - using data-slot for specificity */
+  /* Only use !important for properties that conflict with Tailwind utilities */
+  input[data-slot="search-input"] {
+    /* These need !important to override Tailwind utilities from Input component */
+    background: #eef0f3 !important;
+    border: none !important;
+    
+    /* These can use specificity instead of !important */
+    border-radius: 900px; /* Fully rounded */
+    padding-left: 28px; /* 8px (icon pos) + 16px (icon) + 4px (gap) */
+    padding-right: 14px;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 40px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #5b616e;
+    font-family: var(--font-sans);
+  }
+
+  input[data-slot="search-input"]::placeholder {
+    color: #5b616e;
+  }
+
+  input[data-slot="search-input"]:focus-visible {
+    /* These need !important to override base input focus styles */
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: #eef0f3 !important;
+  }
+
+  /* Search Input Clear Button - Match Figma design */
+  /* Using specific class selector for better specificity */
+  .search-input-clear-btn {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    max-width: 24px;
+    max-height: 24px;
+    border-radius: 50%;
+    background: #0052ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: opacity 140ms ease;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .search-input-clear-btn:hover {
+    opacity: 0.9;
+  }
+
+  .search-input-clear-btn:active {
+    opacity: 0.8;
+  }
+
+  .search-input-clear-btn svg {
+    width: 16px;
+    height: 16px;
+    color: white;
+    fill: white;
+    stroke: white;
+  }
+
   /* Focus state: Coinbase-style focus ring */
   input[data-slot="input"]:focus-visible,
   [data-slot="input"]:focus-visible {

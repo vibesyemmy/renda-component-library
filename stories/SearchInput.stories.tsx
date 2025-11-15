@@ -15,20 +15,53 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    placeholder: "Search...",
+  render: () => {
+    const [value, setValue] = useState("")
+
+    return (
+      <div className="w-96">
+        <SearchInput
+          placeholder="Search"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue("")}
+        />
+      </div>
+    )
   },
 }
 
 export const SearchInvoices: Story = {
-  args: {
-    placeholder: "Search invoices...",
+  render: () => {
+    const [value, setValue] = useState("")
+
+    return (
+      <div className="w-96">
+        <SearchInput
+          placeholder="Search invoices"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue("")}
+        />
+      </div>
+    )
   },
 }
 
 export const SearchClients: Story = {
-  args: {
-    placeholder: "Search clients by name or email...",
+  render: () => {
+    const [value, setValue] = useState("")
+
+    return (
+      <div className="w-96">
+        <SearchInput
+          placeholder="Search by name or email"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue("")}
+        />
+      </div>
+    )
   },
 }
 
@@ -39,7 +72,7 @@ export const Interactive: Story = {
     return (
       <div className="w-96">
         <SearchInput
-          placeholder="Search invoices..."
+          placeholder="Search invoices"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onClear={() => setValue("")}
@@ -55,11 +88,20 @@ export const Interactive: Story = {
 }
 
 export const FullWidth: Story = {
-  render: () => (
-    <div className="w-full max-w-2xl">
-      <SearchInput placeholder="Search across all invoices..." />
-    </div>
-  ),
+  render: () => {
+    const [value, setValue] = useState("")
+
+    return (
+      <div className="w-full max-w-2xl">
+        <SearchInput
+          placeholder="Search across invoices"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue("")}
+        />
+      </div>
+    )
+  },
 }
 
 export const InToolbar: Story = {
@@ -72,7 +114,7 @@ export const InToolbar: Story = {
           <h2 className="text-lg font-semibold">Invoices</h2>
           <div className="flex gap-2">
             <SearchInput
-              placeholder="Search..."
+              placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onClear={() => setSearch("")}
