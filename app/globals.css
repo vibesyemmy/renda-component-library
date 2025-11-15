@@ -491,10 +491,8 @@ body {
     max-width: 300px;
   }
 
-  /* Target the search input element within section header */
-  [data-slot="section-header"] .section-header__search input[data-slot="search-input"],
   [data-slot="section-header"] .section-header__search-input {
-    height: 36px !important;
+    height: 36px;
   }
 
   /* Section Header Action Buttons */
