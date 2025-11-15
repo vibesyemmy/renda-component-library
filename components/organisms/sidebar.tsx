@@ -58,12 +58,11 @@ const defaultNavigation: SidebarNavItem[] = [
 ]
 
 const defaultLogo = (
-  <div className="flex items-center gap-2">
-    <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-      <span className="text-white font-bold text-lg">R</span>
-    </div>
-    <span className="font-bold text-lg">Renda</span>
-  </div>
+  <img
+    src="/logo/logo-with-text-light.svg"
+    alt="Renda"
+    className="h-8 w-auto"
+  />
 )
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
