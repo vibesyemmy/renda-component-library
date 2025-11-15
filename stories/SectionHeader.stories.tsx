@@ -29,43 +29,88 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    title: "Explore",
-    avatarSeed: "John Doe",
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <SectionHeader
+        title="Explore"
+        avatarSeed="John Doe"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      />
+    )
   },
 }
 
 export const WithBackButton: Story = {
-  args: {
-    title: "Bitcoin",
-    showBackButton: true,
-    avatarSeed: "Bitcoin",
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <SectionHeader
+        title="Bitcoin"
+        showBackButton
+        avatarSeed="Bitcoin"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      />
+    )
   },
 }
 
 export const CustomActions: Story = {
-  args: {
-    title: "Dashboard",
-    actions: [
-      { icon: "Settings", label: "Settings", ariaLabel: "Settings" },
-      { icon: "HelpCircle", label: "Help", ariaLabel: "Help" },
-    ],
-    avatarSeed: "User",
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <SectionHeader
+        title="Dashboard"
+        actions={[
+          { icon: "Settings", label: "Settings", ariaLabel: "Settings" },
+          { icon: "HelpCircle", label: "Help", ariaLabel: "Help" },
+        ]}
+        avatarSeed="User"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      />
+    )
   },
 }
 
 export const WithAvatarImage: Story = {
-  args: {
-    title: "Profile",
-    avatarImage: "/avatar_example.png",
-    avatarAlt: "Profile",
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <SectionHeader
+        title="Profile"
+        avatarImage="/avatar_example.png"
+        avatarAlt="Profile"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      />
+    )
   },
 }
 
 export const LongTitle: Story = {
-  args: {
-    title: "This is a very long title that should truncate with ellipsis when it exceeds the available space",
-    avatarSeed: "Long Title",
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <SectionHeader
+        title="This is a very long title that should truncate with ellipsis when it exceeds the available space"
+        avatarSeed="Long Title"
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      />
+    )
   },
 }
 
@@ -168,48 +213,70 @@ export const Interactive: Story = {
 }
 
 export const AllVariants: Story = {
-  render: () => (
-    <div className="space-y-8">
-      <div>
-        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-          Standard Variant
-        </h3>
-        <SectionHeader title="Explore" avatarSeed="John Doe" />
+  render: () => {
+    const [searchValue1, setSearchValue1] = useState("")
+    const [searchValue2, setSearchValue2] = useState("")
+    const [searchValue3, setSearchValue3] = useState("")
+    const [searchValue4, setSearchValue4] = useState("")
+
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+            Standard Variant
+          </h3>
+          <SectionHeader
+            title="Explore"
+            avatarSeed="John Doe"
+            searchValue={searchValue1}
+            onSearchChange={setSearchValue1}
+            onSearchClear={() => setSearchValue1("")}
+          />
+        </div>
+        <div>
+          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+            With Back Button
+          </h3>
+          <SectionHeader
+            title="Bitcoin"
+            showBackButton
+            avatarSeed="Bitcoin"
+            searchValue={searchValue2}
+            onSearchChange={setSearchValue2}
+            onSearchClear={() => setSearchValue2("")}
+          />
+        </div>
+        <div>
+          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+            With Custom Actions
+          </h3>
+          <SectionHeader
+            title="Settings"
+            actions={[
+              { icon: "Download", label: "Download", ariaLabel: "Download" },
+              { icon: "Upload", label: "Upload", ariaLabel: "Upload" },
+            ]}
+            avatarSeed="Settings"
+            searchValue={searchValue3}
+            onSearchChange={setSearchValue3}
+            onSearchClear={() => setSearchValue3("")}
+          />
+        </div>
+        <div>
+          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+            With Avatar Image
+          </h3>
+          <SectionHeader
+            title="Profile"
+            avatarImage="/avatar_example.png"
+            avatarAlt="Profile"
+            searchValue={searchValue4}
+            onSearchChange={setSearchValue4}
+            onSearchClear={() => setSearchValue4("")}
+          />
+        </div>
       </div>
-      <div>
-        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-          With Back Button
-        </h3>
-        <SectionHeader
-          title="Bitcoin"
-          showBackButton
-          avatarSeed="Bitcoin"
-        />
-      </div>
-      <div>
-        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-          With Custom Actions
-        </h3>
-        <SectionHeader
-          title="Settings"
-          actions={[
-            { icon: "Download", label: "Download", ariaLabel: "Download" },
-            { icon: "Upload", label: "Upload", ariaLabel: "Upload" },
-          ]}
-          avatarSeed="Settings"
-        />
-      </div>
-      <div>
-        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-          With Avatar Image
-        </h3>
-        <SectionHeader
-          title="Profile"
-          avatarImage="/avatar_example.png"
-          avatarAlt="Profile"
-        />
-      </div>
-    </div>
-  ),
+    )
+  },
 }
 
