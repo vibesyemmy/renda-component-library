@@ -4,6 +4,7 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Icon, type IconName } from "@/components/ui/icon"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+// Always use SearchInput from molecules for consistent search UI
 import { SearchInput } from "@/components/molecules/search-input"
 import { cn } from "@/lib/utils"
 
@@ -86,6 +87,7 @@ export const SectionHeader = React.forwardRef<HTMLElement, SectionHeaderProps>(
         <div className="section-header__right">
           {showSearch && (
             <div className="section-header__search">
+              {/* Using SearchInput from molecules - ensures consistent search UI across the app */}
               <SearchInput
                 value={searchValue}
                 onChange={(e) => onSearchChange?.(e.target.value)}
