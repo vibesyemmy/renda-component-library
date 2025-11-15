@@ -33,10 +33,12 @@ export { AppShell } from "./organisms/app-shell"
 export { DataTable } from "./organisms/data-table"
 export { Pagination } from "./organisms/pagination"
 export { SectionHeader } from "./organisms/section-header"
+export { Sidebar } from "./organisms/sidebar"
 
 // Types
 export type { IconName } from "./ui/icon"
 export type { Column } from "./organisms/data-table"
 export type { Toast, ToastType } from "../lib/toast-store"
 export type { SectionHeaderProps, SectionHeaderAction } from "./organisms/section-header"
+export type { SidebarProps, SidebarNavItem } from "./organisms/sidebar"
 
