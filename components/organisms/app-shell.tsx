@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Icon, type IconName } from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
-import { Avatar } from "@/components/ui/avatar"
 import { SectionHeader, type SectionHeaderAction } from "@/components/organisms/section-header"
+import { Sidebar, type SidebarNavItem } from "@/components/organisms/sidebar"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -32,6 +32,11 @@ interface AppShellProps {
   onSearchChange?: (value: string) => void
   onSearchClear?: () => void
   searchPlaceholder?: string
+  activeItem?: string
+  onNavigate?: (href: string) => void
+  showAdvancedToggle?: boolean
+  advancedMode?: boolean
+  onAdvancedToggle?: (enabled: boolean) => void
 }
 
 export const AppShell = ({
@@ -47,89 +52,77 @@ export const AppShell = ({
   onSearchChange,
   onSearchClear,
   searchPlaceholder = "Search...",
+  activeItem,
+  onNavigate,
+  showAdvancedToggle = true,
+  advancedMode = false,
+  onAdvancedToggle,
 }: AppShellProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false)
+  
+  // Determine initial active item from props or navigation
+  const getInitialActiveItem = () => {
+    if (activeItem) return activeItem
+    const activeNavItem = navigation.find((item) => item.active)
+    if (activeNavItem?.href) return activeNavItem.href
+    return navigation[0]?.href || "/home"
+  }
+  
+  const [currentActiveItem, setCurrentActiveItem] = React.useState(getInitialActiveItem())
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
     onMenuToggle?.()
   }
 
+  const handleNavigate = (href: string) => {
+    setCurrentActiveItem(href)
+    onNavigate?.(href)
+    
+    // Find and call onClick handler if exists
+    const navItem = navigation.find((item) => item.href === href)
+    navItem?.onClick?.()
+    
+    // Close sidebar on mobile after navigation
+    if (isSidebarOpen) {
+      setIsSidebarOpen(false)
+    }
+  }
+
+  // Convert NavItem[] to SidebarNavItem[]
+  const sidebarNavigation: SidebarNavItem[] = navigation.map((item) => ({
+    label: item.label,
+    href: item.href || `#${item.label.toLowerCase().replace(/\s+/g, "-")}`,
+    icon: item.icon,
+    isActive: item.active || currentActiveItem === item.href,
+  }))
+
+  const defaultLogo = logo || (
+    <img
+      src="/logo/logo-with-text-light.svg"
+      alt="Renda"
+      className="h-8 w-auto"
+    />
+  )
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 bg-card border-r transform transition-transform duration-200 ease-in-out lg:relative lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 transform transition-transform duration-200 ease-in-out lg:relative lg:translate-x-0",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="flex items-center justify-between h-16 px-6 border-b">
-            {logo || (
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">R</span>
-                </div>
-                <span className="font-bold text-lg">Renda</span>
-              </div>
-            )}
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              className="lg:hidden"
-              onClick={toggleSidebar}
-            >
-              <Icon name="X" size={20} />
-            </Button>
-          </div>
-
-          {/* Navigation */}
-          <nav className="flex-1 overflow-y-auto px-3 py-4">
-            <ul className="space-y-1">
-              {navigation.map((item) => (
-                <li key={item.label}>
-                  <button
-                    onClick={item.onClick}
-                    className={cn(
-                      "flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                      item.active
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                    )}
-                  >
-                    <Icon name={item.icon} size={20} />
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* User Section */}
-          {user && (
-            <div className="border-t p-4">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-10 w-10">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt={user.name} />
-                  ) : (
-                    <div className="bg-primary text-primary-foreground flex items-center justify-center h-full w-full">
-                      {user.name.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{user.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">
-                    {user.email}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        <Sidebar
+          activeItem={currentActiveItem}
+          onNavigate={handleNavigate}
+          navigation={sidebarNavigation}
+          logo={defaultLogo}
+          showAdvancedToggle={showAdvancedToggle}
+          advancedMode={advancedMode}
+          onAdvancedToggle={onAdvancedToggle}
+        />
       </aside>
 
       {/* Overlay for mobile */}
@@ -142,7 +135,7 @@ export const AppShell = ({
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Bar */}
+        {/* Top Bar - Mobile */}
         <div className="lg:hidden">
           <header className="h-16 border-b bg-card flex items-center px-4">
             <Button
@@ -156,7 +149,7 @@ export const AppShell = ({
             <div className="flex-1" />
           </header>
         </div>
-        
+
         {/* Section Header - Desktop */}
         <div className="hidden lg:block">
           <SectionHeader
@@ -179,4 +172,3 @@ export const AppShell = ({
     </div>
   )
 }
-

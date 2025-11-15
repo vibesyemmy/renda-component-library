@@ -16,11 +16,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const navigation = [
-  { label: "Dashboard", icon: "Home" as const, active: true, onClick: () => {} },
-  { label: "Invoices", icon: "FileText" as const, onClick: () => {} },
-  { label: "Clients", icon: "Users" as const, onClick: () => {} },
-  { label: "Tax", icon: "TrendingUp" as const, onClick: () => {} },
-  { label: "Settings", icon: "Settings" as const, onClick: () => {} },
+  { label: "Dashboard", icon: "Home" as const, href: "/dashboard", active: true, onClick: () => {} },
+  { label: "Invoices", icon: "FileText" as const, href: "/invoices", onClick: () => {} },
+  { label: "Clients", icon: "Users" as const, href: "/clients", onClick: () => {} },
+  { label: "Tax", icon: "TrendingUp" as const, href: "/tax", onClick: () => {} },
+  { label: "Settings", icon: "Settings" as const, href: "/settings", onClick: () => {} },
 ]
 
 const user = {
@@ -29,15 +29,23 @@ const user = {
 }
 
 export const Default: Story = {
-  args: {
-    navigation,
-    user,
-    children: (
-      <div>
-        <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome to Renda!</p>
-      </div>
-    ),
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <AppShell
+        navigation={navigation}
+        user={user}
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        onSearchClear={() => setSearchValue("")}
+      >
+        <div>
+          <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+          <p className="text-muted-foreground">Welcome to Renda!</p>
+        </div>
+      </AppShell>
+    )
   },
 }
 
@@ -51,7 +59,7 @@ export const WithDashboard: Story = {
         user={user}
         headerTitle="Dashboard"
         searchValue={searchValue}
-        onSearchChange={setSearchValue}
+        onSearchChange={(value) => setSearchValue(value)}
         onSearchClear={() => setSearchValue("")}
         headerActions={[
           {
@@ -117,37 +125,53 @@ export const WithDashboard: Story = {
 }
 
 export const WithCustomLogo: Story = {
-  args: {
-    navigation,
-    user,
-    logo: (
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-          <span className="text-white font-bold text-lg">R</span>
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <AppShell
+        navigation={navigation}
+        user={user}
+        logo={
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <span className="text-white font-bold text-lg">R</span>
+            </div>
+            <span className="font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Renda
+            </span>
+          </div>
+        }
+        searchValue={searchValue}
+        onSearchChange={(value) => setSearchValue(value)}
+        onSearchClear={() => setSearchValue("")}
+      >
+        <div>
+          <h1 className="text-2xl font-bold mb-6">Custom Branding</h1>
+          <p className="text-muted-foreground">App shell with custom logo</p>
         </div>
-        <span className="font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          Renda
-        </span>
-      </div>
-    ),
-    children: (
-      <div>
-        <h1 className="text-2xl font-bold mb-6">Custom Branding</h1>
-        <p className="text-muted-foreground">App shell with custom logo</p>
-      </div>
-    ),
+      </AppShell>
+    )
   },
 }
 
 export const WithoutUser: Story = {
-  args: {
-    navigation,
-    children: (
-      <div>
-        <h1 className="text-2xl font-bold mb-6">App Shell</h1>
-        <p className="text-muted-foreground">Without user section</p>
-      </div>
-    ),
+  render: () => {
+    const [searchValue, setSearchValue] = useState("")
+
+    return (
+      <AppShell
+        navigation={navigation}
+        searchValue={searchValue}
+        onSearchChange={(value) => setSearchValue(value)}
+        onSearchClear={() => setSearchValue("")}
+      >
+        <div>
+          <h1 className="text-2xl font-bold mb-6">App Shell</h1>
+          <p className="text-muted-foreground">Without user section</p>
+        </div>
+      </AppShell>
+    )
   },
 }
 
