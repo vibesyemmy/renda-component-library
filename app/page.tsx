@@ -42,39 +42,29 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <StatCard
                 symbol="Revenue"
-                price="₦2,450,000"
-                percent={12.5}
-                subtitle="from last month"
+                price="2,450,000"
+                priceChange={12.5}
                 icon="TrendingUp"
-                variant="gain"
-                size="md"
+                currency="₦"
               />
               <StatCard
                 symbol="Outstanding"
-                price="₦350,000"
-                percent={-5.2}
-                subtitle="from last month"
+                price="350,000"
+                priceChange={-5.2}
                 icon="TrendingDown"
-                variant="loss"
-                size="md"
+                currency="₦"
               />
               <StatCard
                 symbol="Paid"
                 price="42"
-                percent={8.1}
-                subtitle="invoices"
+                priceChange={8.1}
                 icon="CheckCircle2"
-                variant="gain"
-                size="md"
               />
               <StatCard
                 symbol="Overdue"
                 price="5"
-                percent={0}
-                subtitle="invoices"
+                priceChange={0}
                 icon="AlertCircle"
-                variant="neutral"
-                size="md"
               />
             </div>
           </div>

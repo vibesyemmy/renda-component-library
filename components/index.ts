@@ -41,4 +41,5 @@ export type { Column } from "./organisms/data-table"
 export type { Toast, ToastType } from "../lib/toast-store"
 export type { SectionHeaderProps, SectionHeaderAction } from "./organisms/section-header"
 export type { SidebarProps, SidebarNavItem } from "./organisms/sidebar"
+export type { StatCardProps } from "./molecules/stat-card"
 
