@@ -237,7 +237,8 @@ body {
   
   /* Input Styles - Centralized in globals.css (Coinbase-inspired) */
   input[data-slot="input"],
-  [data-slot="input"] {
+  [data-slot="input"],
+  textarea[data-slot="textarea"] {
     border-radius: var(--radius-input);
     padding: 12px 14px; /* Coinbase-style comfortable padding */
     font-size: 16px;
@@ -249,7 +250,8 @@ body {
   }
 
   input[data-slot="input"]::placeholder,
-  [data-slot="input"]::placeholder {
+  [data-slot="input"]::placeholder,
+  textarea[data-slot="textarea"]::placeholder {
     color: var(--color-muted-foreground);
   }
 
@@ -282,10 +284,21 @@ body {
     color: #5b616e;
   }
 
+  /* Hide native browser clear button on search inputs */
+  input[data-slot="search-input"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+
+  input[data-slot="search-input"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
   input[data-slot="search-input"]:focus-visible {
-    /* These need !important to override base input focus styles */
-    border: none !important;
-    box-shadow: none !important;
+    /* Apply same focus styling as regular input */
+    border: 1.5px solid var(--color-ring) !important; /* Blue border - matches Input focus */
+    box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2) !important; /* Primary blue with opacity - matches Input focus */
     outline: none !important;
     background: #eef0f3 !important;
   }
@@ -331,7 +344,8 @@ body {
 
   /* Focus state: Coinbase-style focus ring */
   input[data-slot="input"]:focus-visible,
-  [data-slot="input"]:focus-visible {
+  [data-slot="input"]:focus-visible,
+  textarea[data-slot="textarea"]:focus-visible {
     border-color: var(--color-ring); /* Retain existing ring color */
     box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2); /* Primary blue with opacity */
     outline: none;
@@ -339,7 +353,8 @@ body {
 
   /* Error state */
   input[data-slot="input"][aria-invalid="true"],
-  [data-slot="input"][aria-invalid="true"] {
+  [data-slot="input"][aria-invalid="true"],
+  textarea[data-slot="textarea"][aria-invalid="true"] {
     border-color: var(--color-destructive); /* Retain existing destructive color */
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); /* Destructive red with opacity */
   }

@@ -23,20 +23,21 @@ Building a reusable component library for Renda using Next.js, Tailwind CSS v4, 
 Core UI primitives that form the foundation of all other components.
 
 **Atoms to Implement:**
-- [ ] Button (primary, secondary, outline, ghost, destructive variants)
-- [ ] Input (text, email, number, password with validation states)
-- [ ] Textarea (with character count support)
-- [ ] Select (dropdown with search)
-- [ ] Checkbox
-- [ ] Radio Group
-- [ ] Toggle/Switch
-- [ ] Badge (status indicators: draft, sent, paid, overdue)
-- [ ] Alert (info, success, warning, error)
-- [ ] Tooltip
-- [ ] Toast (notification system)
-- [ ] Icon Wrapper (Feather icons only)
-- [ ] Avatar (user profile images)
-- [ ] Separator/Divider
+- [x] Button (primary, secondary, outline, ghost, destructive variants) – `Button.stories.tsx`
+- [x] Input (text, email, number, password with validation states) – `Input.stories.tsx` / `PasswordInput`
+- [x] Textarea (with character count support) – `Textarea.stories.tsx`
+- [x] Select (dropdown with search) – `Select.stories.tsx` (includes SelectWithSearch)
+- [x] Checkbox – `Checkbox.stories.tsx`
+- [x] Radio Group – `RadioGroup.stories.tsx`
+- [x] RadioButton – `RadioButton.stories.tsx`
+- [x] Toggle/Switch – `Toggle.stories.tsx`
+- [x] Badge (status indicators: draft, sent, paid, overdue) – `Badge.stories.tsx`
+- [x] Alert (info, success, warning, error) – `Alert.stories.tsx`
+- [x] Tooltip – `Tooltip.stories.tsx`
+- [x] Toast (notification system) – `Toast.stories.tsx`
+- [x] Icon Wrapper (Feather icons only) – `Icon.stories.tsx`
+- [x] Avatar (user profile images) – `Avatar.stories.tsx`
+- [x] Separator/Divider – `Separator.stories.tsx`
 
 **Technical Requirements:**
 - Use `class-variance-authority` for variant management
@@ -51,14 +52,14 @@ Core UI primitives that form the foundation of all other components.
 Composed components built from atoms for specific use cases.
 
 **Molecules to Implement:**
-- [ ] FormField (label + input + error message wrapper)
-- [ ] StatCard (dashboard metric card)
+- [x] FormField (label + input + error message wrapper) – `FormField.stories.tsx`
+- [x] StatCard (dashboard metric card) – `StatCard.stories.tsx`
 - [ ] InvoiceStatusBadge (with color coding)
 - [ ] ClientCard (contact info + quick actions)
 - [ ] LineItemRow (invoice line item display/edit)
-- [ ] EmptyState (no data placeholder)
+- [x] EmptyState (no data placeholder) – `EmptyState.stories.tsx`
 - [ ] LoadingSpinner (with optional text)
-- [ ] SearchInput (with icon and clear button)
+- [x] SearchInput (with icon and clear button) – `SearchInput.stories.tsx`
 - [ ] DatePicker (calendar selection)
 - [ ] CurrencyInput (formatted numeric input)
 - [ ] FilterGroup (tab-style filters for lists)
@@ -75,14 +76,14 @@ Composed components built from atoms for specific use cases.
 Complex, feature-complete components and page layouts.
 
 **Organisms to Implement:**
-- [ ] AppShell (sidebar navigation + top bar + content area)
+- [x] AppShell (sidebar navigation + top bar + content area) – `AppShell.stories.tsx`
 - [ ] Modal/Dialog (with focus trap and backdrop)
 - [ ] Drawer/Sheet (slide-in panel for mobile)
-- [ ] Table (sortable, filterable data table)
-- [ ] Pagination
+- [x] Table (sortable, filterable data table) – `DataTable.stories.tsx`
+- [x] Pagination – `Pagination.stories.tsx`
 - [ ] OnboardingWizard (multi-step form flow)
 - [ ] InvoiceEditor (line items table + totals + tax breakdown)
-- [ ] NavigationMenu (responsive sidebar)
+- [x] NavigationMenu (responsive sidebar) – `Sidebar.stories.tsx`
 - [ ] DropdownMenu (action menus)
 - [ ] Popover (contextual overlays)
 

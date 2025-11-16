@@ -35,7 +35,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
         {hasValue && onClear && (
           <button
             type="button"
-            className="absolute right-1 top-1/2 -translate-y-1/2 search-input-clear-btn z-10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 search-input-clear-btn z-10"
             onClick={onClear}
             aria-label="Clear search"
           >
