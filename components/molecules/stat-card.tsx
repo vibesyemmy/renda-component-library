@@ -67,7 +67,7 @@ export const StatCard = React.forwardRef<HTMLButtonElement, StatCardProps>(
                   className="w-full h-full object-cover"
                 />
               ) : (
-                icon && <Icon name={icon} size={20} className="text-muted-foreground" />
+                icon && <Icon name={icon} size={20} className="text-muted-foreground" aria-hidden="true" />
               )}
             </div>
           )}
@@ -85,10 +85,11 @@ export const StatCard = React.forwardRef<HTMLButtonElement, StatCardProps>(
                     ? "text-success"
                     : "text-destructive"
               )}
-              aria-label={`${isPositive ? "Up" : isNeutral ? "" : "Down"} ${Math.abs(priceChange).toFixed(2)}%`}
             >
-              {!isNeutral && (isPositive ? "↗" : "↘")}{" "}
-              {Math.abs(priceChange).toFixed(2)}%
+              {!isNeutral && (
+                <span aria-hidden="true">{isPositive ? "↗" : "↘"}</span>
+              )}{" "}
+              <span>{Math.abs(priceChange).toFixed(2)}%</span>
             </p>
           </div>
         </div>
