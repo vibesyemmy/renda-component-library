@@ -146,13 +146,11 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         {/* Advanced Toggle */}
         {showAdvancedToggle && (
           <div className="p-3 border-t border-border">
-            <button
-              type="button"
+            <div
               onClick={() => handleAdvancedChange(!advancedMode)}
               className={cn(
-                "w-full flex items-center gap-3 px-3 py-2.5 rounded-full",
-                "text-muted-foreground hover:bg-muted transition-colors duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                "w-full flex items-center gap-3 px-3 py-2.5 rounded-full cursor-pointer",
+                "text-muted-foreground hover:bg-muted transition-colors duration-200"
               )}
             >
               <Icon name="Settings" size={20} className="shrink-0" aria-hidden="true" />
@@ -162,7 +160,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                 onCheckedChange={handleAdvancedChange}
                 aria-label="Toggle advanced mode"
               />
-            </button>
+            </div>
           </div>
         )}
       </nav>
