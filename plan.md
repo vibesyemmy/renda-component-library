@@ -54,8 +54,7 @@ Composed components built from atoms for specific use cases.
 **Molecules to Implement:**
 - [x] FormField (label + input + error message wrapper) – `FormField.stories.tsx`
 - [x] StatCard (dashboard metric card) – `StatCard.stories.tsx`
-- [ ] InvoiceStatusBadge (with color coding)
-- [ ] ClientCard (contact info + quick actions)
+- [x] ClientCard (contact info + quick actions) – `ClientCard.stories.tsx`
 - [ ] LineItemRow (invoice line item display/edit)
 - [x] EmptyState (no data placeholder) – `EmptyState.stories.tsx`
 - [ ] LoadingSpinner (with optional text)
