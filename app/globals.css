@@ -358,6 +358,23 @@ body {
     border-color: var(--color-destructive); /* Retain existing destructive color */
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); /* Destructive red with opacity */
   }
+
+  /* Floating Label Input Container Base & Focus State */
+  [data-slot="floating-input-container"] {
+    border: 1.5px solid var(--color-input);
+    border-radius: var(--radius-input);
+  }
+
+  [data-slot="floating-input-container"]:focus-within {
+    border: 1.5px solid var(--color-ring) !important;
+    box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2);
+    outline: none;
+  }
+
+  [data-slot="floating-input-container"]:focus-within[aria-invalid="true"] {
+    border: 1.5px solid var(--color-destructive) !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
   
   /* Button Styles - Centralized in globals.css (Coinbase-inspired) */
   button[data-slot="button"],
