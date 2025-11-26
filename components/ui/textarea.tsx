@@ -23,21 +23,21 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const isNearLimit = maxLength && charCount >= maxLength * 0.9
     const isAtLimit = maxLength && charCount >= maxLength
 
-    return (
+  return (
       <div className="relative">
-        <textarea
+    <textarea
           ref={ref}
-          data-slot="textarea"
+      data-slot="textarea"
           maxLength={maxLength}
           onChange={handleChange}
-          className={cn(
+      className={cn(
             "flex field-sizing-content min-h-16 w-full bg-transparent text-base md:text-sm",
             "disabled:cursor-not-allowed disabled:opacity-50",
             isAtLimit && "border-destructive",
-            className
-          )}
-          {...props}
-        />
+        className
+      )}
+      {...props}
+    />
         {(showCharCount || maxLength) && (
           <div
             className={cn(
@@ -54,8 +54,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           </div>
         )}
       </div>
-    )
-  }
+  )
+}
 )
 
 Textarea.displayName = "Textarea"

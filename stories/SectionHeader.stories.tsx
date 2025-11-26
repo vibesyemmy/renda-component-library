@@ -69,8 +69,8 @@ export const CustomActions: Story = {
       <SectionHeader
         title="Dashboard"
         actions={[
-          { icon: "Settings", label: "Settings", ariaLabel: "Settings" },
-          { icon: "HelpCircle", label: "Help", ariaLabel: "Help" },
+      { icon: "Settings", label: "Settings", ariaLabel: "Settings" },
+      { icon: "HelpCircle", label: "Help", ariaLabel: "Help" },
         ]}
         avatarSeed="User"
         searchValue={searchValue}
@@ -220,11 +220,11 @@ export const AllVariants: Story = {
     const [searchValue4, setSearchValue4] = useState("")
 
     return (
-      <div className="space-y-8">
-        <div>
-          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-            Standard Variant
-          </h3>
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+          Standard Variant
+        </h3>
           <SectionHeader
             title="Explore"
             avatarSeed="John Doe"
@@ -232,50 +232,50 @@ export const AllVariants: Story = {
             onSearchChange={setSearchValue1}
             onSearchClear={() => setSearchValue1("")}
           />
-        </div>
-        <div>
-          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-            With Back Button
-          </h3>
-          <SectionHeader
-            title="Bitcoin"
-            showBackButton
-            avatarSeed="Bitcoin"
+      </div>
+      <div>
+        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+          With Back Button
+        </h3>
+        <SectionHeader
+          title="Bitcoin"
+          showBackButton
+          avatarSeed="Bitcoin"
             searchValue={searchValue2}
             onSearchChange={setSearchValue2}
             onSearchClear={() => setSearchValue2("")}
-          />
-        </div>
-        <div>
-          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-            With Custom Actions
-          </h3>
-          <SectionHeader
-            title="Settings"
-            actions={[
-              { icon: "Download", label: "Download", ariaLabel: "Download" },
-              { icon: "Upload", label: "Upload", ariaLabel: "Upload" },
-            ]}
-            avatarSeed="Settings"
+        />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+          With Custom Actions
+        </h3>
+        <SectionHeader
+          title="Settings"
+          actions={[
+            { icon: "Download", label: "Download", ariaLabel: "Download" },
+            { icon: "Upload", label: "Upload", ariaLabel: "Upload" },
+          ]}
+          avatarSeed="Settings"
             searchValue={searchValue3}
             onSearchChange={setSearchValue3}
             onSearchClear={() => setSearchValue3("")}
-          />
-        </div>
-        <div>
-          <h3 className="text-sm font-medium mb-2 text-muted-foreground">
-            With Avatar Image
-          </h3>
-          <SectionHeader
-            title="Profile"
-            avatarImage="/avatar_example.png"
-            avatarAlt="Profile"
+        />
+      </div>
+      <div>
+        <h3 className="text-sm font-medium mb-2 text-muted-foreground">
+          With Avatar Image
+        </h3>
+        <SectionHeader
+          title="Profile"
+          avatarImage="/avatar_example.png"
+          avatarAlt="Profile"
             searchValue={searchValue4}
             onSearchChange={setSearchValue4}
             onSearchClear={() => setSearchValue4("")}
-          />
-        </div>
+        />
       </div>
+    </div>
     )
   },
 }

@@ -149,7 +149,7 @@ export const AppShell = ({
             <div className="flex-1" />
           </header>
         </div>
-
+        
         {/* Section Header - Desktop */}
         <div className="hidden lg:block">
           <SectionHeader

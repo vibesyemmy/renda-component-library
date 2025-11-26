@@ -32,7 +32,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       name,
       disabled = false,
       orientation = "vertical",
-      className,
+  className,
       "data-id": dataId,
     },
     ref
@@ -46,15 +46,15 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       }
     }
 
-    return (
+  return (
       <div
         ref={ref}
         data-id={dataId}
         role="radiogroup"
-        className={cn(
+      className={cn(
           orientation === "horizontal" ? "flex gap-4" : "space-y-3",
-          className
-        )}
+        className
+      )}
       >
         {options.map((option) => {
           const isChecked = value === option.value
@@ -98,7 +98,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                 )}
               </div>
             </div>
-          )
+  )
         })}
       </div>
     )

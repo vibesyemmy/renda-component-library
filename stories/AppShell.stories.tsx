@@ -40,10 +40,10 @@ export const Default: Story = {
         onSearchChange={setSearchValue}
         onSearchClear={() => setSearchValue("")}
       >
-        <div>
-          <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome to Renda!</p>
-        </div>
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+        <p className="text-muted-foreground">Welcome to Renda!</p>
+      </div>
       </AppShell>
     )
   },
@@ -133,23 +133,23 @@ export const WithCustomLogo: Story = {
         navigation={navigation}
         user={user}
         logo={
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-white font-bold text-lg">R</span>
-            </div>
-            <span className="font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Renda
-            </span>
-          </div>
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <span className="text-white font-bold text-lg">R</span>
+        </div>
+        <span className="font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          Renda
+        </span>
+      </div>
         }
         searchValue={searchValue}
         onSearchChange={(value) => setSearchValue(value)}
         onSearchClear={() => setSearchValue("")}
       >
-        <div>
-          <h1 className="text-2xl font-bold mb-6">Custom Branding</h1>
-          <p className="text-muted-foreground">App shell with custom logo</p>
-        </div>
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Custom Branding</h1>
+        <p className="text-muted-foreground">App shell with custom logo</p>
+      </div>
       </AppShell>
     )
   },
@@ -166,10 +166,10 @@ export const WithoutUser: Story = {
         onSearchChange={(value) => setSearchValue(value)}
         onSearchClear={() => setSearchValue("")}
       >
-        <div>
-          <h1 className="text-2xl font-bold mb-6">App Shell</h1>
-          <p className="text-muted-foreground">Without user section</p>
-        </div>
+      <div>
+        <h1 className="text-2xl font-bold mb-6">App Shell</h1>
+        <p className="text-muted-foreground">Without user section</p>
+      </div>
       </AppShell>
     )
   },

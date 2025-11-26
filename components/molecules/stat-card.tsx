@@ -69,23 +69,23 @@ export const StatCard = React.forwardRef<HTMLButtonElement, StatCardProps>(
               ) : (
                 icon && <Icon name={icon} size={20} className="text-muted-foreground" aria-hidden="true" />
               )}
-            </div>
-          )}
+          </div>
+        )}
 
           {/* Symbol and Price */}
           <div className="flex flex-col gap-1">
             <p className="text-sm font-semibold text-foreground">{symbol}</p>
             <p className="text-sm text-foreground font-medium">{formattedPrice}</p>
             <p
-              className={cn(
+          className={cn(
                 "text-xs font-medium",
                 isNeutral
                   ? "text-muted-foreground"
                   : isPositive
                     ? "text-success"
                     : "text-destructive"
-              )}
-            >
+          )}
+        >
               {!isNeutral && (
                 <span aria-hidden="true">{isPositive ? "↗" : "↘"}</span>
               )}{" "}
